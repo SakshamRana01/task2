@@ -1,0 +1,40 @@
+#define ledB 8
+#define ledO 7
+#define ledG 12
+
+int interrCount = 0 ; 
+
+void setup()
+{
+  pinMode(ledB , OUTPUT);
+  pinMode(ledO , OUTPUT);
+  pinMode(ledG , OUTPUT);
+  
+  digitalWrite(ledB , 0); 
+  digitalWrite(ledO , 0); 
+  digitalWrite(ledG , 0); 
+
+  attachInterrupt(0 , interruptChange ,RISING);
+  
+}
+
+void loop()
+{
+  interrCount++; 
+  
+  digitalWrite(ledB,1);
+  digitalWrite(ledO ,0);
+  
+  delay(300);
+  
+  if(interrCount == 10)
+  {
+    interrCount = 0; 
+    digitalWrite(ledG , 0);
+  }
+}
+
+void interruptChange()
+{
+	digitalWrite(ledG ,1);
+}
